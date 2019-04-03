@@ -35,7 +35,32 @@ public class Piece {
 	 Makes its own copy of the array and the TPoints inside it.
 	*/
 	public Piece(TPoint[] points) {
-		// YOUR CODE HERE
+		int maxHeight = 0  , maxWidth = 0;
+		this.body = new TPoint[points.length];
+		for(int i = 0 ; i<points.length  ; i++){
+			maxWidth = Math.max(points[i].x+1 , maxWidth);
+			maxHeight = Math.max(points[i].y+1 , maxHeight);
+			body[i]= new TPoint(points[i].x,points[i].y);
+		}
+		this.height = maxHeight;
+		this.width = maxWidth;
+		this.skirt = makeSkirt();
+		this.next = null;
+
+	}
+	private int[] makeSkirt(){
+		boolean[] check = new boolean[width];
+		int[] result = new int[width];
+		for (int i = 0; i < body.length; i++) {
+			TPoint tPoint = body[i];
+			if (!check[tPoint.x]) {
+				result[tPoint.x] = tPoint.y;
+				check[tPoint.x] = true;
+			} else {
+				result[tPoint.x] = Math.min(result[tPoint.x], tPoint.y);
+			}
+		}
+		return result;
 	}
 	
 
@@ -88,8 +113,13 @@ public class Piece {
 	 rotated from the receiver.
 	 */
 	public Piece computeNextRotation() {
-		return null; // YOUR CODE HERE
-	}
+		TPoint ar[] = new TPoint[this.body.length];
+		for(int i = 0 ; i<this.body.length  ; i++){
+			TPoint point = new TPoint(this.height-1-this.body[i].y,this.body[i].x);
+			ar[i]=point;
+		}
+		Piece result = new Piece(ar);
+		return result; 	}
 
 	/**
 	 Returns a pre-computed piece that is 90 degrees counter-clockwise
@@ -120,8 +150,19 @@ public class Piece {
 		if (!(obj instanceof Piece)) return false;
 		Piece other = (Piece)obj;
 		
-		// YOUR CODE HERE
+		for(int i =  0 ;i<other.body.length ; i++){
+			if(!containsPoint(other.body[i]))
+				return false;
+		}
 		return true;
+	}
+
+	private boolean containsPoint(TPoint tPoint) {
+		for(int i = 0  ; i<body.length ; i++){
+			if(tPoint.equals(body[i]))
+				return true;
+		}
+		return false;
 	}
 
 
@@ -142,7 +183,7 @@ public class Piece {
 	public static final int S2	  = 4;
 	public static final int SQUARE	= 5;
 	public static final int PYRAMID = 6;
-	
+
 	/**
 	 Returns an array containing the first rotation of
 	 each of the 7 standard tetris pieces in the order
@@ -187,7 +228,18 @@ public class Piece {
 	 to the first piece.
 	*/
 	private static Piece makeFastRotations(Piece root) {
-		return null; // YOUR CODE HERE
+		Piece temp  = root ;
+
+		while(true){
+			Piece nextP = temp.computeNextRotation();
+			if(nextP.equals(root)){
+				temp.next = root;
+				break;
+			}
+			temp.next = nextP;
+			temp = nextP;
+		}
+		return root;
 	}
 	
 	
@@ -216,8 +268,6 @@ public class Piece {
 		TPoint[] array = points.toArray(new TPoint[0]);
 		return array;
 	}
-
-	
 
 
 }
