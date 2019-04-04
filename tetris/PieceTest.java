@@ -20,6 +20,8 @@ public class PieceTest {
 	private Piece s, sRotated;
 	Piece ar[] ;
 
+
+
 	@Before
 	public void setUp() throws Exception {
 		ar = Piece.getPieces();
@@ -27,11 +29,10 @@ public class PieceTest {
 		pyr2 = pyr1.computeNextRotation();
 		pyr3 = pyr2.computeNextRotation();
 		pyr4 = pyr3.computeNextRotation();
-		
+
 		s = new Piece(Piece.S1_STR);
 		sRotated = s.computeNextRotation();
 	}
-	
 	// Here are some sample tests to get you started
 	
 	@Test
@@ -39,7 +40,7 @@ public class PieceTest {
 		// Check size of pyr piece
 		assertEquals(3, pyr1.getWidth());
 		assertEquals(2, pyr1.getHeight());
-		
+
 		// Now try after rotation
 		// Effectively we're testing size and rotation code here
 		assertEquals(2, pyr2.getWidth());
@@ -49,6 +50,11 @@ public class PieceTest {
 		Piece l = new Piece(Piece.STICK_STR);
 		assertEquals(1, l.getWidth());
 		assertEquals(4, l.getHeight());
+	}
+	@Test
+	public void testBody(){
+		Piece p = new Piece(s.getBody());
+		assertTrue(p.equals(s));
 	}
 	@Test
     public void testSampleRotation(){
@@ -99,6 +105,15 @@ public class PieceTest {
 
 		assertTrue(ar[Piece.STICK].equals((ar[Piece.STICK].fastRotation().fastRotation())));
 
+	}
+	@Test
+	public void testFail(){
+		boolean failed = false;
+		try {
+			Piece p = new Piece("certilivar");
+		} catch (RuntimeException e) {
+			failed = true; }
+		assertTrue(failed);
 	}
 	@Test
 	public void testWidthHeight(){

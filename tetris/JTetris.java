@@ -687,7 +687,6 @@ public class JTetris extends JComponent {
 		JFrame frame = new JFrame("Stanford Tetris");
 		JComponent container = (JComponent)frame.getContentPane();
 		container.setLayout(new BorderLayout());
-
 		// Install the passed in JTetris in the center.
 		container.add(tetris, BorderLayout.CENTER);
 		
