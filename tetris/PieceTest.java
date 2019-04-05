@@ -34,7 +34,7 @@ public class PieceTest {
 		sRotated = s.computeNextRotation();
 	}
 	// Here are some sample tests to get you started
-	
+
 	@Test
 	public void testSampleSize() {
 		// Check size of pyr piece
@@ -45,7 +45,7 @@ public class PieceTest {
 		// Effectively we're testing size and rotation code here
 		assertEquals(2, pyr2.getWidth());
 		assertEquals(3, pyr2.getHeight());
-		
+
 		// Now try with some other piece, made a different way
 		Piece l = new Piece(Piece.STICK_STR);
 		assertEquals(1, l.getWidth());
@@ -131,7 +131,7 @@ public class PieceTest {
 
 
 	}
-	
+
 	// Test the skirt returned by a few pieces
 	@Test
 	public void testSampleSkirt() {
@@ -139,10 +139,10 @@ public class PieceTest {
 		// right for arrays.
 		assertTrue(Arrays.equals(new int[] {0, 0, 0}, pyr1.getSkirt()));
 		assertTrue(Arrays.equals(new int[] {1, 0, 1}, pyr3.getSkirt()));
-		
+
 		assertTrue(Arrays.equals(new int[] {0, 0, 1}, s.getSkirt()));
 		assertTrue(Arrays.equals(new int[] {1, 0}, sRotated.getSkirt()));
 	}
-	
-	
+
+
 }

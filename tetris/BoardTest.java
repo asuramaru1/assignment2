@@ -20,7 +20,7 @@ public class BoardTest {
 		
 		pyr1 = new Piece(Piece.PYRAMID_STR);
 		pyr2 = pyr1.computeNextRotation();
-		pyr3 = pyr2.computeNextRotation();
+		pyr3 = pyr2.computeNextRotation(); 
 		pyr4 = pyr3.computeNextRotation();
 		
 		s = new Piece(Piece.S1_STR);
@@ -28,7 +28,7 @@ public class BoardTest {
 		
 		b.place(pyr1, 0, 0);
 	}
-	
+
 	// Check the basic width/height/max after the one placement
 	@Test
 	public void testSample1() {
