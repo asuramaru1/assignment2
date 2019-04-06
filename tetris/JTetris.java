@@ -317,7 +317,7 @@ public class JTetris extends JComponent {
 
 		Piece piece = pickNextPiece();
 		
-		// Center it up at the top
+		// Center it up a t the top
 		int px = (board.getWidth() - piece.getWidth())/2;
 		int py = board.getHeight() - piece.getHeight();
 		

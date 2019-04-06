@@ -89,7 +89,7 @@ public class DefaultBrain implements Brain {
         
         int sumHeight = 0;
         int holes = 0;
-        
+
         // Count the holes, and sum up the heights
         for (int x=0; x<width; x++) {
             final int colHeight = board.getColumnHeight(x);
