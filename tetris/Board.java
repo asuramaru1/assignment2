@@ -88,7 +88,6 @@ public class Board	{
 			int checkHeight = calculateHeight();
 			if(checkHeight!=maxHeight)
 			{
-				toString();
 				throw  new RuntimeException("max Height not same" + checkHeight + " "+maxHeight);
 			}
 			int[] wid = new int[height];
@@ -122,6 +121,7 @@ public class Board	{
 	 to compute this fast -- O(skirt length).
 	*/
 	public int dropHeight(Piece piece, int x) {
+		assert (piece.getWidth() + x) <= this.grid.length;
 		int[] ar = piece.getSkirt();
 		int result = heights[x]-ar[0];
 		for(int i = 1  ; i<piece.getWidth() ; i++)

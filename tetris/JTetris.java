@@ -274,6 +274,7 @@ public class JTetris extends JComponent {
 			currentY = y;
 			// repaint the rect where it is now
 			repaintPiece(currentPiece, currentX, currentY);
+
 		}
 		else {
 			board.undo();
@@ -591,10 +592,9 @@ public class JTetris extends JComponent {
 				if (board.getGrid(x, y)) {
 					boolean filled = (board.getRowWidth(y)==bWidth);
 					if (filled) g.setColor(Color.green);
-					
+					else g.setColor(Color.BLUE);
 					g.fillRect(left+1, yPixel(y)+1, dx, dy);	// +1 to leave a white border
-					
-					if (filled) g.setColor(Color.black);
+					if (filled) g.setColor(Color.BLUE);
 				}
 			}
 		}
