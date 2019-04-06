@@ -264,6 +264,7 @@ public class Board	{
 	*/
 
 	public void undo() {
+
 		System.arraycopy( pastStateHeights , 0, heights, 0, width);
 		System.arraycopy(pastStateWidths, 0, widths, 0, height);
 		 maxHeight = pastStateMaxHeight ;
@@ -306,6 +307,7 @@ public class Board	{
 				if (getGrid(x,y)) buff.append('+');
 				else buff.append(' ');
 			}
+
 			buff.append("|\n");
 		}
 		for (int x=0; x<width+2; x++) buff.append('-');
